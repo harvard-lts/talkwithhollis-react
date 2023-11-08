@@ -21,7 +21,7 @@ RUN apt-get -y update && \
   echo 'umask 002' >> /home/${APP_ID_NAME}/.profile && \
   echo 'umask 002' >> /home/${APP_ID_NAME}/.bashrc
 
-COPY --chown=twhadm:appcommon . /home/${APP_ID_NAME}
+COPY --chown=${APP_ID_NAME}:${GROUP_ID_NAME} . /home/${APP_ID_NAME}
 
 USER ${APP_ID_NAME}
 
