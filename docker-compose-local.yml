@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+
+  twhui:
+    container_name: twhui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #command: 'tail -f /dev/null'
+    env_file: .env
+    volumes:
+      - './:/home/twhadm'
+    ports:
+      - "3000:3000"

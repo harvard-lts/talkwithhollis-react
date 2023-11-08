@@ -20,10 +20,16 @@ export default function App() {
 
     setMessages([...messages, prompt]);
 
+    console.log(`handleSubmit ${messages} ${prompt}`);
+    console.log(messages);
+    console.log(prompt);
+    console.log(`process.env.OPENAI_API_KEY`);
+    console.log(process.env.OPENAI_API_KEY);
+
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -34,16 +40,16 @@ export default function App() {
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        // const res = data.choices[0].message.content;
-        // setMessages((messages) => [
-        //   ...messages,
-        //   {
-        //     role: "assistant",
-        //     content: res
-        //   }
-        // ]);
-        // setHistory((history) => [...history, { question: input, answer: res }]);
-        // setInput("");
+        const answer = data.choices[0].message.content;
+        setMessages((messages) => [
+          ...messages,
+          {
+            role: "assistant",
+            content: answer
+          }
+        ]);
+        setHistory((history) => [...history, { question: input, answer: answer }]);
+        setInput("");
       }).catch((err) => {
         console.error(err);
       });
@@ -59,7 +65,9 @@ export default function App() {
       <div className="Column">
         <h3 className="Title">Chat Messages</h3>
         <div className="Content">
-        <Message key={1} role={'user'} content={'Olá'} />
+        {messages.map((el, i) => {
+            return <Message key={i} role={el.role} content={el.content} />;
+          })}
         </div>
         <Input
           value={input}
