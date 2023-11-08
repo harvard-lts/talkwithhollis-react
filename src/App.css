@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: auto 200px;
   gap: 20px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 20px;
@@ -12,18 +12,13 @@
   color: white;
 }
 
-.Title {
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  color: black;
-  background-color: rgb(218, 255, 170);
-}
-
 .Content {
-  height: calc(100vh - 200px);
+  /*height: calc(100vh - 200px);*/
+  height: 90%;
   overflow-y: scroll;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #F9F9F9;
 }
 
 ::-webkit-scrollbar {

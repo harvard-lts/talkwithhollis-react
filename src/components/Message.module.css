@@ -3,12 +3,13 @@
   grid-template-columns: 60px auto;
   min-height: 60px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
   border-radius: 10px;
-  background-color: #1b1b1d;
+  background-color: #F3F3F3;
+  color: black;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }

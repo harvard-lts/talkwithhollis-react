@@ -9,12 +9,12 @@ export default function Input({ value, onChange, onClick }) {
     <div className={styles.wrapper}>
       <input
         className={styles.text}
-        placeholder="Your prompt here..."
+        placeholder="Type your message here..."
         value={value}
         onChange={onChange}
       />
       <button className={styles.btn} onClick={onClick}>
-        Go
+        Submit
       </button>
     </div>
   );

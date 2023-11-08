@@ -23,8 +23,6 @@ export default function App() {
     console.log(`handleSubmit ${messages} ${prompt}`);
     console.log(messages);
     console.log(prompt);
-    console.log(`process.env.OPENAI_API_KEY`);
-    console.log(process.env.OPENAI_API_KEY);
 
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -63,7 +61,6 @@ export default function App() {
   return (
     <div className="App">
       <div className="Column">
-        <h3 className="Title">Chat Messages</h3>
         <div className="Content">
         {messages.map((el, i) => {
             return <Message key={i} role={el.role} content={el.content} />;
@@ -76,7 +73,6 @@ export default function App() {
         />
       </div>
       <div className="Column">
-        <h3 className="Title">History</h3>
         <div className="Content">
           {history.map((el, i) => {
             return (

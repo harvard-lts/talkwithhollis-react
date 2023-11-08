@@ -3,7 +3,7 @@
   grid-template-columns: auto 100px;
   height: 60px;
   border-radius: 10px;
-  background-color: #323236;
+  background-color: #F9F9F9;
 }
 
 .text {
@@ -11,7 +11,7 @@
   outline: none;
   background: none;
   padding: 20px;
-  color: white;
+  color: black;
   font-size: 16px;
 }
 
@@ -20,10 +20,11 @@
   border-radius: 0 10px 10px 0;
   font-size: 16px;
   font-weight: bold;
-  background-color: rgb(218, 255, 170);
+  background-color: rgb(5, 121, 184);
+  color: white;
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(200, 253, 130);
+  background-color: rgb(62, 111, 125);
 }

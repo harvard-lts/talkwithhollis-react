@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project was based on the example [Build ChatGPT Clone React OpenAI](https://www.sitepoint.com/build-chatgpt-clone-react-openai-api/)
+
 ## Available Scripts
 
 In the project directory, you can run:
