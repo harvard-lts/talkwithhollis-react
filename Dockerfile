@@ -4,8 +4,8 @@ FROM node:lts-slim
 
 ENV APP_ID_NUMBER=9999
 ENV APP_ID_NAME=twhadm
-ENV GROUP_ID_NUMBER=199
-ENV GROUP_ID_NAME=appadmin
+ENV GROUP_ID_NUMBER=1636
+ENV GROUP_ID_NAME=appcommon
 
 RUN apt-get -y update && \
   deluser node && \
@@ -21,11 +21,11 @@ RUN apt-get -y update && \
   echo 'umask 002' >> /home/${APP_ID_NAME}/.profile && \
   echo 'umask 002' >> /home/${APP_ID_NAME}/.bashrc
 
-WORKDIR /home/${APP_ID_NAME}
-COPY . /home/${APP_ID_NAME}
-
-RUN npm install
+COPY --chown=twhadm:appcommon . /home/${APP_ID_NAME}
 
 USER ${APP_ID_NAME}
+
+WORKDIR /home/${APP_ID_NAME}
+RUN npm install
 
 CMD [ "npm", "start" ]
