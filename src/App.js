@@ -20,15 +20,15 @@ export default function App() {
 
     setMessages([...messages, userInput]);
 
-    let headers = { "Content-Type": "application/json" };
+    let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
     let apiUrl, postBody;
 
     // POST body for sending to TWH API
-    postBody = {
+    postBody = JSON.stringify({
       conversationHistory: history,
       userQuestion: userInput.content
-    }
-    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://host.docker.internal:80/chat";
+    });
+    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
 
     // If OPENAI_API_KEY is set, use Open AI API
     if (process.env.REACT_APP_OPENAI_API_KEY) {
@@ -47,7 +47,7 @@ export default function App() {
 
     await fetch(apiUrl, {
       method: "POST",
-      headers: headers,
+      //headers: headers,
       body: postBody
     })
       //.then((data) => data.json())
@@ -66,6 +66,7 @@ export default function App() {
       }).catch((err) => {
         console.error(err);
       });
+
   };
 
   const clear = () => {
