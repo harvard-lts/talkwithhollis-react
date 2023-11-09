@@ -47,7 +47,7 @@ export default function App() {
 
     await fetch(apiUrl, {
       method: "POST",
-      //headers: headers,
+      headers: headers,
       body: postBody
     })
       //.then((data) => data.json())
