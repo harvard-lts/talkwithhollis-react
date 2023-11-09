@@ -11,6 +11,8 @@ export default function App() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [history, setHistory] = useState([]);
+  // If OPENAI_API_KEY is set, use Open AI API instead of TWH API
+  const openAI = process.env.REACT_APP_OPENAI_API_KEY ? true : false;
 
   const handleSubmit = async () => {
     const userInput = {
@@ -25,13 +27,13 @@ export default function App() {
 
     // POST body for sending to TWH API
     postBody = JSON.stringify({
-      //conversationHistory: history,
+      conversationHistory: history,
       userQuestion: userInput.content
     });
     apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
 
-    // If OPENAI_API_KEY is set, use Open AI API
-    if (process.env.REACT_APP_OPENAI_API_KEY) {
+
+    if (openAI) {
       apiUrl = "https://api.openai.com/v1/chat/completions";
       headers.Authorization = `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`;
       // POST body for sending to Open AI API
@@ -50,10 +52,15 @@ export default function App() {
       headers: headers,
       body: postBody
     })
-      //.then((data) => data.json())
+      .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        /*const answer = data.choices[0].message.content;
+        let answer;
+        if (openAI) {
+          answer = data.choices[0].message.content;
+        } else {
+          answer = data.message.content;
+        }
         setMessages((messages) => [
           ...messages,
           {
@@ -62,7 +69,7 @@ export default function App() {
           }
         ]);
         setHistory((history) => [...history, { "user": input, "assistant": answer }]);
-        setInput("");*/
+        setInput("");
       }).catch((err) => {
         console.error(err);
       });
