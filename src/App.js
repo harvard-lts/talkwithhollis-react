@@ -20,37 +20,27 @@ export default function App() {
 
     setMessages([...messages, userInput]);
 
-    console.log(`handleSubmit ${messages} ${userInput}`);
-    console.log(`messages`);
-    console.log(messages);
-    console.log(`userInput`);
-    console.log(userInput);
+    // POST body for sending to Open AI API
+    const apiUrlOpenAiApi = "https://api.openai.com/v1/chat/completions";
+    const postBodyOpenAiApi = JSON.stringify({
+      model: "gpt-3.5-turbo",
+      messages: [...messages, userInput]
+    })
 
-    const postMessages = [...messages, userInput];
-    console.log(`postMessages`);
-    console.log(postMessages);
-
-    let postBody = {
+    // POST body for sending to TWH API
+    const postBodyTwhApi = {
       conversationHistory: history,
       userQuestion: userInput.content
     }
+    const apiUrlTwhApi = "http://localhost:80/chat";
 
-    console.log(`postBody`);
-    console.log(postBody);
-
-    //postBody.user_question = input;
-
-
-    await fetch("https://api.openai.com/v1/chat/completions", {
+    await fetch(apiUrlOpenAiApi, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: postMessages
-      })
+      body: postBodyOpenAiApi
     })
       .then((data) => data.json())
       .then((data) => {
