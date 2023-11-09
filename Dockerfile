@@ -28,4 +28,6 @@ USER ${APP_ID_NAME}
 WORKDIR /home/${APP_ID_NAME}
 RUN npm install
 
+RUN chown -R ${APP_ID_NAME}:${GROUP_ID_NAME} /home/${APP_ID_NAME}/node_modules
+
 CMD [ "npm", "start" ]
