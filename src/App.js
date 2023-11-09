@@ -25,7 +25,7 @@ export default function App() {
 
     // POST body for sending to TWH API
     postBody = JSON.stringify({
-      conversationHistory: history,
+      //conversationHistory: history,
       userQuestion: userInput.content
     });
     apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
