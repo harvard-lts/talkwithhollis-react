@@ -13,16 +13,33 @@ export default function App() {
   const [history, setHistory] = useState([]);
 
   const handleSubmit = async () => {
-    const prompt = {
+    const userInput = {
       role: "user",
       content: input
     };
 
-    setMessages([...messages, prompt]);
+    setMessages([...messages, userInput]);
 
-    console.log(`handleSubmit ${messages} ${prompt}`);
+    console.log(`handleSubmit ${messages} ${userInput}`);
+    console.log(`messages`);
     console.log(messages);
-    console.log(prompt);
+    console.log(`userInput`);
+    console.log(userInput);
+
+    const postMessages = [...messages, userInput];
+    console.log(`postMessages`);
+    console.log(postMessages);
+
+    let postBody = {
+      conversationHistory: history,
+      userQuestion: userInput.content
+    }
+
+    console.log(`postBody`);
+    console.log(postBody);
+
+    //postBody.user_question = input;
+
 
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -32,7 +49,7 @@ export default function App() {
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
-        messages: [...messages, prompt]
+        messages: postMessages
       })
     })
       .then((data) => data.json())
@@ -46,7 +63,7 @@ export default function App() {
             content: answer
           }
         ]);
-        setHistory((history) => [...history, { question: input, answer: answer }]);
+        setHistory((history) => [...history, { "user": input, "assistant": answer }]);
         setInput("");
       }).catch((err) => {
         console.error(err);
@@ -78,11 +95,11 @@ export default function App() {
             return (
               <History
                 key={i}
-                question={el.question}
+                question={el["user"]}
                 onClick={() =>
                   setMessages([
-                    { role: "user", content: history[i].question },
-                    { role: "assistant", content: history[i].answer }
+                    { role: "user", content: history[i]["user"] },
+                    { role: "assistant", content: history[i]["assistant"] }
                   ])
                 }
               />

@@ -5,8 +5,15 @@
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
-  background-color: #F3F3F3;
   color: black;
+}
+
+.assistant {
+  background-color: #C0C0C0;
+}
+
+.user {
+  background-color: #F3F3F3;
 }
 
 .avatar {
