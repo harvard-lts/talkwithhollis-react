@@ -11,34 +11,56 @@ export default function App() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [history, setHistory] = useState([]);
+  // If OPENAI_API_KEY is set, use Open AI API instead of TWH API
+  const openAI = process.env.REACT_APP_OPENAI_API_KEY ? true : false;
 
   const handleSubmit = async () => {
-    const prompt = {
+    const userInput = {
       role: "user",
       content: input
     };
 
-    setMessages([...messages, prompt]);
+    setMessages([...messages, userInput]);
 
-    console.log(`handleSubmit ${messages} ${prompt}`);
-    console.log(messages);
-    console.log(prompt);
+    let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+    let apiUrl, postBody;
 
-    await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    // POST body for sending to TWH API
+    postBody = JSON.stringify({
+      conversationHistory: history,
+      userQuestion: userInput.content
+    });
+    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
+
+
+    if (openAI) {
+      apiUrl = "https://api.openai.com/v1/chat/completions";
+      headers.Authorization = `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`;
+      // POST body for sending to Open AI API
+      postBody = JSON.stringify({
         model: "gpt-3.5-turbo",
-        messages: [...messages, prompt]
+        messages: [...messages, userInput]
       })
+    }
+
+    console.log(apiUrl);
+    console.log(headers);
+    console.log(postBody);
+
+    await fetch(apiUrl, {
+      method: "POST",
+      headers: headers,
+      body: postBody
     })
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        const answer = data.choices[0].message.content;
+        let answer;
+        if (openAI) {
+          answer = data.choices[0].message.content;
+        } else {
+          answer = data.message.content;
+        }
         setMessages((messages) => [
           ...messages,
           {
@@ -46,11 +68,12 @@ export default function App() {
             content: answer
           }
         ]);
-        setHistory((history) => [...history, { question: input, answer: answer }]);
+        setHistory((history) => [...history, { "user": input, "assistant": answer }]);
         setInput("");
       }).catch((err) => {
         console.error(err);
       });
+
   };
 
   const clear = () => {
@@ -78,11 +101,11 @@ export default function App() {
             return (
               <History
                 key={i}
-                question={el.question}
+                question={el["user"]}
                 onClick={() =>
                   setMessages([
-                    { role: "user", content: history[i].question },
-                    { role: "assistant", content: history[i].answer }
+                    { role: "user", content: history[i]["user"] },
+                    { role: "assistant", content: history[i]["assistant"] }
                   ])
                 }
               />
