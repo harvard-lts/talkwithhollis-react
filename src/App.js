@@ -20,32 +20,40 @@ export default function App() {
 
     setMessages([...messages, userInput]);
 
-    // POST body for sending to Open AI API
-    const apiUrlOpenAiApi = "https://api.openai.com/v1/chat/completions";
-    const postBodyOpenAiApi = JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [...messages, userInput]
-    })
+    let headers = { "Content-Type": "application/json" };
+    let apiUrl, postBody;
 
     // POST body for sending to TWH API
-    const postBodyTwhApi = {
+    postBody = {
       conversationHistory: history,
       userQuestion: userInput.content
     }
-    const apiUrlTwhApi = "http://localhost:80/chat";
+    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://host.docker.internal:80/chat";
 
-    await fetch(apiUrlOpenAiApi, {
+    // If OPENAI_API_KEY is set, use Open AI API
+    if (process.env.REACT_APP_OPENAI_API_KEY) {
+      apiUrl = "https://api.openai.com/v1/chat/completions";
+      headers.Authorization = `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`;
+      // POST body for sending to Open AI API
+      postBody = JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [...messages, userInput]
+      })
+    }
+
+    console.log(apiUrl);
+    console.log(headers);
+    console.log(postBody);
+
+    await fetch(apiUrl, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: postBodyOpenAiApi
+      headers: headers,
+      body: postBody
     })
-      .then((data) => data.json())
+      //.then((data) => data.json())
       .then((data) => {
         console.log(data);
-        const answer = data.choices[0].message.content;
+        /*const answer = data.choices[0].message.content;
         setMessages((messages) => [
           ...messages,
           {
@@ -54,7 +62,7 @@ export default function App() {
           }
         ]);
         setHistory((history) => [...history, { "user": input, "assistant": answer }]);
-        setInput("");
+        setInput("");*/
       }).catch((err) => {
         console.error(err);
       });
