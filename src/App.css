@@ -32,6 +32,10 @@ section {
   background-color: white;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .messages {
   height: 75vh;
 }
