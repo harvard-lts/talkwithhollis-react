@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
+@font-face {
+  font-family: 'Trueno';
+  src: local('TruenoRg'), url(./styles/fonts/TruenoRg.otf) format('opentype');
+}
+
 * {
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
-  font-family: "Varela Round", sans-serif;
-}
-
-body {
-  background-color: #F3F3F3;
+  font-family: 'Trueno', sans-serif;
 }

@@ -1,26 +1,37 @@
-.App {
-  display: grid;
-  grid-template-columns: auto 200px;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.Column {
-  color: white;
-}
-
-.Content {
-  /*height: calc(100vh - 200px);*/
-  height: 90%;
-  overflow-y: scroll;
-  margin-bottom: 10px;
-  border-radius: 10px;
+.app {
   background-color: #F9F9F9;
+  min-height: 100vh;
 }
 
-::-webkit-scrollbar {
-  display: none;
+header {
+  text-align: center;
+  padding: 10px;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+footer {
+  text-align: center;
+}
+
+aside:nth-child(1) {
+  flex: 0 0 25vh;
+}
+
+aside:nth-child(3) {
+  flex: 0 0 25vh;
+}
+
+section {
+  flex: 1 0 auto;
+  overflow-y: scroll;
+  max-width: 75%;
+  background-color: white;
+}
+
+.messages {
+  height: 75vh;
 }
