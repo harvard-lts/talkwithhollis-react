@@ -1,4 +1,4 @@
-.app {
+/*.app {
   background-color: #F9F9F9;
   min-height: 100vh;
 }
@@ -38,4 +38,42 @@ section {
 
 .messages {
   height: 75vh;
+}
+*/
+
+.app {
+  background-color: #F9F9F9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+header {
+  height: 50px;
+}
+*/
+
+header, footer {
+  /* flex-shrink: 0; and flex-basis to fixed height */
+  flex: 0 0 50px; 
+}
+
+main {
+  /* height: calc(100% - 50px); 100% height minus header height */
+  display: flex;
+  flex-direction: row;
+  flex: 1; /* fill remaining space */
+}
+
+.content {
+  flex: 1; /* fill remaining space */
+  overflow-y: auto; /* add scroll if content overflows */ 
+  /*position: relative;*/
+}
+
+.input {
+  position: absolute;
+  bottom: 75px;
+  width: 100%;
 }
