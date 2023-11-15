@@ -20,6 +20,7 @@ export default function App() {
       content: input
     };
 
+    setInput("");
     setMessages([...messages, userInput]);
 
     let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
@@ -32,7 +33,6 @@ export default function App() {
     });
     apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
 
-
     if (openAI) {
       apiUrl = "https://api.openai.com/v1/chat/completions";
       headers.Authorization = `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`;
@@ -42,10 +42,6 @@ export default function App() {
         messages: [...messages, userInput]
       })
     }
-
-    console.log(apiUrl);
-    console.log(headers);
-    console.log(postBody);
 
     await fetch(apiUrl, {
       method: "POST",
@@ -82,38 +78,29 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <div className="Column">
-        <div className="Content">
-        {messages.map((el, i) => {
-            return <Message key={i} role={el.role} content={el.content} />;
-          })}
-        </div>
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onClick={input ? handleSubmit : undefined}
-        />
-      </div>
-      <div className="Column">
-        <div className="Content">
-          {history.map((el, i) => {
-            return (
-              <History
-                key={i}
-                question={el["user"]}
-                onClick={() =>
-                  setMessages([
-                    { role: "user", content: history[i]["user"] },
-                    { role: "assistant", content: history[i]["assistant"] }
-                  ])
-                }
-              />
-            );
-          })}
-        </div>
-        <Clear onClick={clear} />
-      </div>
+    <div className="app">
+      <header>
+        <h1>Talk With HOLLIS</h1>
+      </header>
+      <main>
+          <div className="sidebar">&nbsp;</div>
+          <div className="content">
+            <div className="messages_wrapper">
+              {messages.map((el, i) => {
+                return <Message key={i} role={el.role} content={el.content} />;
+              })}
+            </div>
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onClick={input ? handleSubmit : undefined}
+            />
+          </div>
+          <div className="sidebar">&nbsp;</div>
+      </main>
+      <footer>
+        &copy; Harvard Library
+      </footer>
     </div>
   );
 }

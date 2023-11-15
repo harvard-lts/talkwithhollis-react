@@ -1,4 +1,4 @@
-.wrapper {
+.message {
   display: grid;
   grid-template-columns: 60px auto;
   min-height: 60px;
@@ -9,7 +9,7 @@
 }
 
 .assistant {
-  background-color: #C0C0C0;
+  background-color: #F9F9F9;
 }
 
 .user {

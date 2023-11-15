@@ -1,26 +1,45 @@
-.App {
-  display: grid;
-  grid-template-columns: auto 200px;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.Column {
-  color: white;
-}
-
-.Content {
-  /*height: calc(100vh - 200px);*/
-  height: 90%;
-  overflow-y: scroll;
-  margin-bottom: 10px;
-  border-radius: 10px;
+.app {
   background-color: #F9F9F9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-::-webkit-scrollbar {
-  display: none;
+header, footer {
+  /* flex-grow: 0; flex-shrink: 0; and flex-basis to fixed height */
+  flex: 0 0 50px;
+  text-align: center;
+}
+
+.footer {
+  font-size: 0.75rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  /* fill remaining space */
+  flex: 1; 
+}
+
+.content {
+  /* fill remaining space */
+  flex: 1 1 100vh;
+  background-color: white;
+  height: 90%;
+}
+
+p {
+  white-space: pre-wrap;
+  word-wrap: break-word;   
+}
+
+.sidebar {
+  flex: 0 0 10%;
+}
+
+.messages_wrapper {
+  /* add scroll if content overflows */ 
+  overflow-y: auto;
+  height: calc(100vh - 175px);
 }
