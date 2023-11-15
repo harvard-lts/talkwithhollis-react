@@ -1,34 +1,25 @@
-.wrapper {
+.form_wrapper {
   display: flex;
   flex-direction: row;
-  margin: 10px;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  padding: 10px;
 }
 
-p {
-  white-space: pre-wrap;
-  word-wrap: break-word;   
-}
-
-.form__label {
-  font-size: 1.75rem;
-  display: block;
-  /*transition: all 0.3s;
-  transform: translateY(0rem);*/
-}
-
-.form__input {
+.form_input {
   color: black;
   font-size: 1rem;
   padding: 0.75rem 1rem;
   flex: 1;
   border-radius: 1rem;
   background-color: rgb(255, 255, 255);
-  border: 0.3rem solid #F9F9F9;
+  border: 0.3rem solid #F3F3F3;
 }
 
-.form__input:focus {
+.form_input:focus {
   outline: none;
-  border: 0.3rem solid #F3F3F3;
+  border: 0.3rem solid #C0C0C0;
 }
 
 button {
@@ -37,8 +28,7 @@ button {
   border-radius: 1rem;
   width: 75px;
   margin-left: -75px;
-  background-color: #F3F3F3;
-  color: white;
+  background-color: transparent;
 }
 
 button:hover {

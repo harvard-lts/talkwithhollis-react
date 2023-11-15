@@ -1,66 +1,22 @@
-/*.app {
-  background-color: #F9F9F9;
-  min-height: 100vh;
-}
-
-header {
-  text-align: center;
-  padding: 10px;
-}
-
-main {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-footer {
-  text-align: center;
-}
-
-aside:nth-child(1) {
-  flex: 0 0 25vh;
-}
-
-aside:nth-child(3) {
-  flex: 0 0 25vh;
-}
-
-section {
-  flex: 1 0 auto;
-  overflow-y: scroll;
-  max-width: 75%;
-  background-color: white;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.messages {
-  height: 75vh;
-}
-*/
-
 .app {
-  background-color: #F9F9F9;
+  background-color: white;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/*
-header {
-  height: 50px;
-}
-*/
-
 header, footer {
-  /* flex-shrink: 0; and flex-basis to fixed height */
-  flex: 0 0 50px; 
+  /* flex-shrink: 0; flex-shrink: 0; and flex-basis to fixed height */
+  flex: 0 0 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+.footer {
+  font-size: 0.75rem;
 }
 
 main {
-  /* height: calc(100% - 50px); 100% height minus header height */
   display: flex;
   flex-direction: row;
   flex: 1; /* fill remaining space */
@@ -69,11 +25,15 @@ main {
 .content {
   flex: 1; /* fill remaining space */
   overflow-y: auto; /* add scroll if content overflows */ 
-  /*position: relative;*/
+  position: relative;
+  background-color: #F9F9F9;
 }
 
-.input {
-  position: absolute;
-  bottom: 75px;
-  width: 100%;
+p {
+  white-space: pre-wrap;
+  word-wrap: break-word;   
+}
+
+.sidebar {
+  flex: 0 0 15%;
 }

@@ -22,12 +22,7 @@ export default function App() {
 
     setInput("");
     setMessages([...messages, userInput]);
-    setMessages([...messages, 
-      {
-        "role": "assistant",
-        "content": "McGraw Center for Conservation Biology Library\n9:00am - 5:00pm\n1.  mountains, / Milne\n    Z-L 722\n\nWidener Library\n9:00am - 5:00pm\n1.  mountains; a play in one act. The mountains; a drama in three acts and a prologue. / Wolfe\n    ALA 7804.66\n2.  Mountains. / Auden\n    23531.17.280\n3.  mountains / White\n    US 38239.04.10\n4.  mountains / White\n    F 2737.2\n\nCabot Science Library\n9:00am - 5:00pm\n1.  Contrasts of the Appalachian mountains : a lecture delivered in the National Museum, Washington, D.C., March 25, 1882 / Chickering\n    Sci Files"
-      }]);
-
+    
     let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
     let apiUrl, postBody;
 
@@ -89,26 +84,25 @@ export default function App() {
 
   return (
     <div className="app">
-
       <header>
-        menu bar
+        <h1>Talk With HOLLIS</h1>
       </header>
-
       <main>
-          <div className="sidebar">Left sidebar</div>
+          <div className="sidebar">&nbsp;</div>
           <div className="content">
-          Main content
-          <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
-          <div className="input">
-            <input type="text" />
+            {messages.map((el, i) => {
+              return <Message key={i} role={el.role} content={el.content} />;
+            })}
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onClick={input ? handleSubmit : undefined}
+            />
           </div>
-          </div>
-          <div className="sidebar">Right sidebar</div>
+          <div className="sidebar">&nbsp;</div>
       </main>
       <footer>
-        footer content
+        &copy; Harvard Library
       </footer>
     </div>
 
