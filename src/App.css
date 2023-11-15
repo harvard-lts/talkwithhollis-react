@@ -1,15 +1,14 @@
 .app {
-  background-color: white;
+  background-color: #F9F9F9;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 header, footer {
-  /* flex-shrink: 0; flex-shrink: 0; and flex-basis to fixed height */
+  /* flex-grow: 0; flex-shrink: 0; and flex-basis to fixed height */
   flex: 0 0 50px;
   text-align: center;
-  padding: 10px;
 }
 
 .footer {
@@ -19,14 +18,15 @@ header, footer {
 main {
   display: flex;
   flex-direction: row;
-  flex: 1; /* fill remaining space */
+  /* fill remaining space */
+  flex: 1; 
 }
 
 .content {
-  flex: 1; /* fill remaining space */
-  overflow-y: auto; /* add scroll if content overflows */ 
-  position: relative;
-  background-color: #F9F9F9;
+  /* fill remaining space */
+  flex: 1 1 100vh;
+  background-color: white;
+  height: 90%;
 }
 
 p {
@@ -35,5 +35,11 @@ p {
 }
 
 .sidebar {
-  flex: 0 0 15%;
+  flex: 0 0 10%;
+}
+
+.messages_wrapper {
+  /* add scroll if content overflows */ 
+  overflow-y: auto;
+  height: calc(100vh - 175px);
 }

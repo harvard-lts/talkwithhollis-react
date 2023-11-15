@@ -1,10 +1,6 @@
 .form_wrapper {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  padding: 10px;
 }
 
 .form_input {

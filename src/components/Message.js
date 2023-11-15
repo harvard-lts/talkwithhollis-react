@@ -5,7 +5,7 @@ import styles from "./Message.module.css";
 
 export default function Message({ role, content }) {
   return (
-    <div className={`${styles.wrapper} ${styles[role]}`}>
+    <div className={`${styles.message} ${styles[role]}`}>
       <div>
         <img
           src={role === "assistant" ? bot : user}

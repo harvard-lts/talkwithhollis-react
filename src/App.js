@@ -6,7 +6,7 @@ import History from "./components/History";
 import Clear from "./components/Clear";
 
 import "./App.css";
-// https://jsfiddle.net/8dk4wthr/1/
+
 export default function App() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -22,7 +22,7 @@ export default function App() {
 
     setInput("");
     setMessages([...messages, userInput]);
-    
+
     let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
     let apiUrl, postBody;
 
@@ -33,7 +33,6 @@ export default function App() {
     });
     apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
 
-
     if (openAI) {
       apiUrl = "https://api.openai.com/v1/chat/completions";
       headers.Authorization = `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`;
@@ -43,10 +42,6 @@ export default function App() {
         messages: [...messages, userInput]
       })
     }
-
-    console.log(apiUrl);
-    console.log(headers);
-    console.log(postBody);
 
     await fetch(apiUrl, {
       method: "POST",
@@ -90,9 +85,11 @@ export default function App() {
       <main>
           <div className="sidebar">&nbsp;</div>
           <div className="content">
-            {messages.map((el, i) => {
-              return <Message key={i} role={el.role} content={el.content} />;
-            })}
+            <div className="messages_wrapper">
+              {messages.map((el, i) => {
+                return <Message key={i} role={el.role} content={el.content} />;
+              })}
+            </div>
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -105,6 +102,5 @@ export default function App() {
         &copy; Harvard Library
       </footer>
     </div>
-
   );
 }
