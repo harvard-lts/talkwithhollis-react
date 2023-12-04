@@ -1,0 +1,10 @@
+# Build image
+version: '3.7'
+
+services:
+
+  talkwithhollis-ui:
+    image: artifactory.huit.harvard.edu/lts/talkwithhollis-ui:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
