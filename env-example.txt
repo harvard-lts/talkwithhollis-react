@@ -1,6 +1,6 @@
 # React variable names must start with REACT_APP_
 # Talk With HOLLIS API URL MUST HAVE A TRAILING SLASH /
-REACT_APP_TWH_API_URL=http://localhost:80/chat/
+REACT_APP_TWH_API_URL=http://localhost:80/api/chat/
 
 # Set OpenAI API key ONLY if using the OpenAI chat completions API instead of the Talk With HOLLIS API
 #REACT_APP_OPENAI_API_KEY=API_KEY
