@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import Message from "./components/Message";
+import Messages from "./components/Messages";
 import Input from "./components/Input";
-import History from "./components/History";
-import Clear from "./components/Clear";
+//import History from "./components/History";
+//import Clear from "./components/Clear";
 
 import "./App.css";
 
@@ -72,10 +72,12 @@ export default function App() {
 
   };
 
+  /*
   const clear = () => {
     setMessages([]);
     setHistory([]);
   };
+  */
 
   return (
     <div className="app">
@@ -85,11 +87,9 @@ export default function App() {
       <main>
           <div className="sidebar">&nbsp;</div>
           <div className="content">
-            <div className="messages_wrapper">
-              {messages.map((el, i) => {
-                return <Message key={i} role={el.role} content={el.content} />;
-              })}
-            </div>
+            <Messages
+              messages={messages}
+            />
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
