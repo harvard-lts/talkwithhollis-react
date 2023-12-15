@@ -1,7 +1,7 @@
 import bot from "../styles/icons/bot.png";
 import user from "../styles/icons/user.png";
-
 import styles from "./Message.module.css";
+import parse from 'html-react-parser';
 
 export default function Message({ role, content }) {
   return (
@@ -14,7 +14,7 @@ export default function Message({ role, content }) {
         />
       </div>
       <div>
-        <p>{content}</p>
+        <p>{parse(content)}</p>
       </div>
     </div>
   );
