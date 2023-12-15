@@ -37,9 +37,3 @@ p {
 .sidebar {
   flex: 0 0 10%;
 }
-
-.messages_wrapper {
-  /* add scroll if content overflows */ 
-  overflow-y: auto;
-  height: calc(100vh - 175px);
-}
