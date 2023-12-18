@@ -3,3 +3,18 @@
   overflow-y: auto;
   height: calc(100vh - 175px);
 }
+
+.loading_wrapper {
+  padding: 20px;
+  margin: 20px;
+}
+
+.loading_icon {
+  margin-right: 10px;
+}
+
+.error_wrapper {
+  padding: 20px;
+  margin: 20px;
+  color: red;
+}

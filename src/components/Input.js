@@ -1,7 +1,7 @@
 import styles from "./Input.module.css";
 import send from "../styles/icons/send.png";
 
-export default function Input({ value, onChange, onClick }) {
+export default function Input({ value, onChange, onClick, disabled }) {
   return (
     <div className={styles.form_wrapper}>
       <input
@@ -15,8 +15,9 @@ export default function Input({ value, onChange, onClick }) {
             onClick();
           }
         }}
+        disabled={disabled}
       />
-      <button className={styles.button} onClick={onClick} aria-label="Send message">
+      <button className={styles.button} onClick={onClick} aria-label="Send message" disabled={disabled}>
         <img src={send} width="25" height="25" alt="send" />
       </button>
     </div>
