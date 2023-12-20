@@ -13,6 +13,10 @@
   border: 0.3rem solid #F3F3F3;
 }
 
+.form_input:disabled {
+  background-color: #F3F3F3;
+}
+
 .form_input:focus {
   outline: none;
   border: 0.3rem solid #C0C0C0;
@@ -29,4 +33,8 @@ button {
 
 button:hover {
   background-color: #C0C0C0;
+}
+
+button:disabled {
+  background-color: #F3F3F3;
 }

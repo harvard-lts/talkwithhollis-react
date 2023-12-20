@@ -7,7 +7,8 @@
 
 header, footer {
   /* flex-grow: 0; flex-shrink: 0; and flex-basis to fixed height */
-  flex: 0 0 50px;
+  /*flex: 0 0 75px;*/
+  margin-bottom: 9px;
   text-align: center;
 }
 

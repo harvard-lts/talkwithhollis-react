@@ -11,9 +11,11 @@ export default function App() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState(false);
   // If OPENAI_API_KEY is set, use Open AI API instead of TWH API
   const openAI = process.env.REACT_APP_OPENAI_API_KEY ? true : false;
-
+  console.log(`loading ${loading}`);
   const handleSubmit = async () => {
     const userInput = {
       role: "user",
@@ -22,6 +24,7 @@ export default function App() {
 
     setInput("");
     setMessages([...messages, userInput]);
+    setLoading(loading => true);
 
     let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
     let apiUrl, postBody;
@@ -66,8 +69,11 @@ export default function App() {
         ]);
         setHistory((history) => [...history, { "user": input, "assistant": answer }]);
         setInput("");
+        setLoading(loading => false);
       }).catch((err) => {
         console.error(err);
+        setServerError(serverError => true);
+        setLoading(loading => false);
       });
 
   };
@@ -82,18 +88,22 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <h1>Talk With HOLLIS</h1>
+        <h1>Talk With HOLLIS (alpha release)</h1>
+        <h3>Data may be several years old</h3>
       </header>
       <main>
           <div className="sidebar">&nbsp;</div>
           <div className="content">
             <Messages
               messages={messages}
+              loading={loading}
+              serverError={serverError}
             />
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onClick={input ? handleSubmit : undefined}
+              disabled={loading || serverError}
             />
           </div>
           <div className="sidebar">&nbsp;</div>
