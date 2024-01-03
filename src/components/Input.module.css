@@ -14,7 +14,7 @@
 }
 
 .form_input:disabled {
-  background-color: #F3F3F3;
+  background-color: #f6f6f6;
 }
 
 .form_input:focus {
