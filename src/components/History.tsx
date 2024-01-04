@@ -1,9 +1,15 @@
-import styles from "./History.module.css";
+import React from 'react';
+import styles from './History.module.scss';
 
-export default function History({ question, onClick }) {
+interface HistoryProps {
+  onClick: () => void;
+  content: string;
+}
+
+export default function History({ content, onClick }: HistoryProps) {
   return (
     <div className={styles.wrapper} onClick={onClick}>
-      <p>{question.substring(0, 15)}...</p>
+      <p>{content.substring(0, 15)}...</p>
     </div>
   );
 }

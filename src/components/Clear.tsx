@@ -1,6 +1,11 @@
-import styles from "./Clear.module.css";
+import React from 'react';
+import styles from './Clear.module.scss';
 
-export default function Clear({ onClick }) {
+interface ClearProps {
+  onClick: () => void;
+}
+
+export default function Clear({ onClick }: ClearProps) {
   return (
     <button className={styles.wrapper} onClick={onClick}>
       Clear

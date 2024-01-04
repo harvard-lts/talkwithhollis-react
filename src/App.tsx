@@ -1,23 +1,25 @@
-import { useState } from "react";
-
-import Messages from "./components/Messages";
-import Input from "./components/Input";
+import React from 'react';
+import { useState } from 'react';
+import Messages from './components/Messages';
+import { MessageType } from './types/Message';
+import { HistoryType } from './types/History';
+import { HeadersType } from './types/Headers';
+import Input from './components/Input';
 //import History from "./components/History";
 //import Clear from "./components/Clear";
-
-import "./App.css";
+import './App.scss';
 
 export default function App() {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [serverError, setServerError] = useState(false);
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [history, setHistory] = useState<HistoryType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [serverError, setServerError] = useState<boolean>(false);
   // If OPENAI_API_KEY is set, use Open AI API instead of TWH API
   const openAI = process.env.REACT_APP_OPENAI_API_KEY ? true : false;
-  console.log(`loading ${loading}`);
+
   const handleSubmit = async () => {
-    const userInput = {
+    const userInput: MessageType = {
       role: "user",
       content: input
     };
@@ -26,7 +28,7 @@ export default function App() {
     setMessages([...messages, userInput]);
     setLoading(loading => true);
 
-    let headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+    let headers: HeadersType = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
     let apiUrl, postBody;
 
     // POST body for sending to TWH API
@@ -54,7 +56,7 @@ export default function App() {
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        let answer;
+        let answer: string;
         if (openAI) {
           answer = data.choices[0].message.content;
         } else {
@@ -67,7 +69,7 @@ export default function App() {
             content: answer
           }
         ]);
-        setHistory((history) => [...history, { "user": input, "assistant": answer }]);
+        setHistory((history) => [...history, { "user": input, "assistant": answer } as HistoryType]);
         setInput("");
         setLoading(loading => false);
       }).catch((err) => {
