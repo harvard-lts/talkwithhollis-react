@@ -1,14 +1,22 @@
+import React from 'react';
 import { useEffect, useRef } from 'react';
-import Message from "./Message";
-import styles from "./Messages.module.css";
-import loadingIcon from "../styles/icons/icons8-loading.gif";
+import Message from './Message';
+import styles from './Messages.module.scss';
+import loadingIcon from '../styles/icons/icons8-loading.gif';
+import { MessageType } from '../types/Message';
 
-export default function Messages ({ messages, loading, serverError }) {
+export interface MessagesProps { 
+  messages: MessageType[];
+  loading: boolean;
+  serverError: boolean;
+}
 
-  const messagesEndRef = useRef(null)
+export default function Messages ({ messages, loading, serverError }: MessagesProps) {
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export default function Messages ({ messages, loading, serverError }) {
           <img
           src={loadingIcon}
           className={styles.loading_icon}
-          alt="loading spinner"
+          alt='loading spinner'
           />
           Generating AI response...
         </div>

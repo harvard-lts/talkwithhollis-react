@@ -1,7 +1,15 @@
-import styles from "./Input.module.css";
-import send from "../styles/icons/send.png";
+import React from 'react';
+import styles from './Input.module.scss';
+import send from '../styles/icons/send.png';
 
-export default function Input({ value, onChange, onClick, disabled }) {
+interface InputProps {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+export default function Input({ value, onChange, onClick, disabled }: InputProps) {
   return (
     <div className={styles.form_wrapper}>
       <input
