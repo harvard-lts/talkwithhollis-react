@@ -111,7 +111,12 @@ export default function App() {
           <div className="sidebar">&nbsp;</div>
       </main>
       <footer>
+        <div>
         Please note: Data may be several years old.
+        </div>
+        <div>
+          &copy; Harvard Library
+        </div>
       </footer>
     </div>
   );
