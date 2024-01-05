@@ -10,14 +10,15 @@ interface InputProps {
 }
 
 export default function Input({ value, onChange, onClick, disabled }: InputProps) {
+  const placeholder = "Ask about book availability by title or topic";
   return (
     <div className={styles.form_wrapper}>
       <input
         className={styles.form_input}
-        placeholder="Type your message here..."
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        aria-label="Type your message here"
+        aria-label={placeholder}
         onKeyDown={e => {
           if(e.key === 'Enter' && onClick) {
             onClick();
