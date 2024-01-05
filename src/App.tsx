@@ -91,7 +91,7 @@ export default function App() {
     <div className="app">
       <header>
         <h1>Talk With HOLLIS (alpha release)</h1>
-        <h3>Data may be several years old</h3>
+        <h3>Find books on the shelf at multiple library locations</h3>
       </header>
       <main>
           <div className="sidebar">&nbsp;</div>
@@ -111,7 +111,7 @@ export default function App() {
           <div className="sidebar">&nbsp;</div>
       </main>
       <footer>
-        &copy; Harvard Library
+        Please note: Data may be several years old.
       </footer>
     </div>
   );

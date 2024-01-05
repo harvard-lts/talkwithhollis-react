@@ -14,10 +14,10 @@ export default function Input({ value, onChange, onClick, disabled }: InputProps
     <div className={styles.form_wrapper}>
       <input
         className={styles.form_input}
-        placeholder="Type your message here..."
+        placeholder="Ask about book availability by title or topic"
         value={value}
         onChange={onChange}
-        aria-label="Type your message here"
+        aria-label="Ask about book availability by title or topic"
         onKeyDown={e => {
           if(e.key === 'Enter' && onClick) {
             onClick();
