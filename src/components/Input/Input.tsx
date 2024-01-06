@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './Input.module.scss';
-import send from '../styles/icons/send.png';
+import send from '../../styles/icons/send.png';
 
 interface InputProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
   disabled?: boolean;
+  placeholderText?: string;
 }
 
-export default function Input({ value, onChange, onClick, disabled }: InputProps) {
-  const placeholder = "Ask about book availability by title or topic";
+export default function Input({ value, onChange, onClick, disabled, placeholderText = '' }: InputProps) {
+  const placeholder = placeholderText || "Ask about book availability by title or topic";
   return (
     <div className={styles.form_wrapper}>
       <input

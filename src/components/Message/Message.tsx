@@ -1,9 +1,9 @@
 import React from 'react';
-import bot from '../styles/icons/bot.png';
-import user from '../styles/icons/user.png';
-import styles from './Message.module.scss';
+import bot from '../../styles/icons/bot.png';
+import user from '../../styles/icons/user.png';
+import styles from '../Message/Message.module.scss';
 import parse from 'html-react-parser';
-import { MessageType } from '../types/Message';
+import { MessageType } from '../../types/Message';
 
 export default function Message({ role, content }: MessageType) {
   return (
