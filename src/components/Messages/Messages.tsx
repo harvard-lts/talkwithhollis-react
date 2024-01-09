@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
-import Message from './Message';
+import Message from './../Message/Message';
 import styles from './Messages.module.scss';
-import loadingIcon from '../styles/icons/icons8-loading.gif';
-import { MessageType } from '../types/Message';
+import loadingIcon from '../../styles/icons/icons8-loading.gif';
+import { MessageType } from '../../types/Message';
 
 export interface MessagesProps { 
   messages: MessageType[];

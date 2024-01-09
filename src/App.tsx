@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
-import Messages from './components/Messages';
+import { useState, useRef, useEffect } from 'react';
+import Messages from './components/Messages/Messages';
 import { MessageType } from './types/Message';
 import { HistoryType } from './types/History';
 import { HeadersType } from './types/Headers';
-import Input from './components/Input';
-//import History from "./components/History";
-//import Clear from "./components/Clear";
+import Input from './components/Input/Input';
+//import History from "./components/History/History";
+//import Clear from "./components/Clear/Clear";
 import './App.scss';
 
 export default function App() {
