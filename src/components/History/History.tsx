@@ -9,7 +9,7 @@ interface HistoryProps {
 export default function History({ content, onClick }: HistoryProps) {
   return (
     <div className={styles.wrapper} onClick={onClick}>
-      <p>{content.substring(0, 15)}...</p>
+      <div className={styles.message_content}>{content.substring(0, 15)}...</div>
     </div>
   );
 }

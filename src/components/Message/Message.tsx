@@ -16,7 +16,7 @@ export default function Message({ role, content }: MessageType) {
         />
       </div>
       <div>
-        <p>{parse(content)}</p>
+        <div className="message_content">{parse(content)}</div>
       </div>
     </div>
   );

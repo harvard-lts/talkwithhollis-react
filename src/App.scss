@@ -30,11 +30,30 @@ main {
   height: 90%;
 }
 
-p {
+.sidebar {
+  flex: 0 0 10%;
+}
+
+.message_content {
   white-space: pre-wrap;
   word-wrap: break-word;   
 }
 
-.sidebar {
-  flex: 0 0 10%;
+.library_name {
+  font-size: 1.2em;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.library_hours {
+  font-style: italic;
+}
+
+.open_now {
+  font-style: italic;
+}
+
+.book_item {
+  display: inline-block;
+  margin-bottom: 6px;
 }
