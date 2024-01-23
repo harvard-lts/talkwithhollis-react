@@ -36,7 +36,7 @@ export default function App() {
       conversationHistory: history,
       userQuestion: userInput.content
     });
-    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://twhapi:80/chat/";
+    apiUrl = process.env.REACT_APP_TWH_API_URL || "http://localhost:23051/api/chat/";
 
     if (openAI) {
       apiUrl = "https://api.openai.com/v1/chat/completions";
